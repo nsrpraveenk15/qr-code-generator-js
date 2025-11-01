@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QR Code Generator — Auto Version & All Data Types</title>
+  <style>
+    :root{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    body{display:flex;gap:28px;align-items:flex-start;justify-content:center;padding:36px;background:#f6f7fb;color:#0b1220}
+    .card{background:white;border-radius:12px;box-shadow:0 8px 30px rgba(12,20,40,0.06);padding:20px;max-width:520px;width:100%}
+    h1{font-size:18px;margin:0 0 12px}
+    label{display:block;font-size:13px;margin:12px 0 6px;color:#334155}
+    input[type="text"], input[type="url"], textarea, select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    .row{display:flex;gap:12px}
+    .small{width:120px}
+    button{margin-top:14px;padding:10px 14px;border-radius:9px;border:0;background:#0b5cff;color:white;font-weight:600;cursor:pointer}
+    button.secondary{background:#eef2ff;color:#0b5cff;border:1px solid #dbe7ff}
+    #preview{display:grid;place-items:center;padding:18px;border-radius:12px;border:1px dashed #e6e9ef;margin-top:18px;background:#fbfdff}
+    #qr { width: 200px; height:200px; }
+    .meta{font-size:13px;color:#58607a;margin-top:8px}
+    footer{font-size:12px;color:#6b7280;margin-top:12px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>QR Code Generator — Supports Text, Links, Numbers</h1>
+
+    <label for="mode">Select input type</label>
+    <select id="mode">
+      <option value="auto">Auto Detect</option>
+      <option value="text">Plain Text</option>
+      <option value="url">URL / Link</option>
+      <option value="numeric">Numbers (Numeric)</option>
+      <option value="alphanumeric">Alphanumeric</option>
+    </select>
+
+    <label for="payload">Enter text / link / numbers</label>
+    <textarea id="payload" rows="3" placeholder="Type text, a link, or digits...">Generate</textarea>
+
+    <div class="row">
+      <div class="small">
+        <label for="ec">Error Correction</label>
+        <select id="ec">
+          <option value="L">L - Low (7%)</option>
+          <option value="M" selected>M - Medium (15%)</option>
+          <option value="Q">Q - Quartile (25%)</option>
+          <option value="H">H - High (30%)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="size">Module size (px)</label>
+        <input id="size" type="text" value="8" />
+      </div>
+    </div>
+
+    <button id="generate">Generate QR (Auto Version)</button>
+    <button id="download" class="secondary">Download PNG</button>
+
+    <div id="preview">
+      <div id="qr"></div>
+      <div class="meta" id="meta"></div>
+    </div>
+
+    <footer>This QR generator automatically adjusts the <strong>version</strong> to fit your data type (text, link, or numeric) and size. Supports Byte, Alphanumeric, and Numeric modes.</footer>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
